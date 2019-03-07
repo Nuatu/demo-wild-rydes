@@ -90,15 +90,13 @@ Resources:
         swagger: '2.0'
         info: {}
         paths:
-          /:
+          /ride:
             post:
               x-amazon-apigateway-integration:
                 httpMethod: POST
                 type: aws_proxy
                 uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${RequestUnicorn.Arn}/invocations
               responses: {}
-              security:
-                - WildRydes: []
       EndpointConfiguration: REGIONAL
       Cors:
         AllowOrigin: '''*'''
@@ -129,10 +127,10 @@ Resources:
           TABLE_ARN: !GetAtt Rides.Arn
           SECRETS_NAMESPACE: !Sub /${EnvironmentTagName}/
       Events:
-        ApiPOST:
+        ApiPOSTride:
           Type: Api
           Properties:
-            Path: /
+            Path: /ride
             Method: POST
             RestApiId: !Ref Api
   Rides:
