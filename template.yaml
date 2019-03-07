@@ -72,6 +72,8 @@ Resources:
         - email
         - preferred_username
       UserPoolName: !Sub ${AWS::StackName}-UserPool
+      AutoVerifiedAttributes:
+        - email
 Parameters:
   StackTagName:
     Type: String
